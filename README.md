@@ -8,7 +8,13 @@ Load the Grunfeld investment data set:
 ```gretl
 open grunfeld.gdt
 ```
-A helpful command is the ```$obsdate``` accessor for returning a series holding ISO dates. However, for getting this working, once need to set the observation dimension as follows:
+In case one has loaded a data set which is not known being a panel data set, one can define a proper panel data set by means of the ```setobs``` command:
+```gretl
+setobs firm year --panel-vars
+```
+We've used the firm and year series as identifiers for the cross-sectional and time-dimension, respectively.
+
+A helpful command is the ```$obsdate``` accessor for returning a series holding ISO dates. However, for getting this working, one needs to set the observation dimension as follows:
 ```gretl
 setobs 1 1935 --panel-time
 series obsdate = $obsdate
