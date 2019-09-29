@@ -14,9 +14,9 @@ setobs firm year --panel-vars
 ```
 We've used the firm and year series as identifiers for the cross-sectional and time-dimension, respectively.
 
-A helpful command is the ```$obsdate``` accessor for returning a series holding ISO dates. However, for getting this working, one needs to set the observation dimension as follows:
+A helpful command is the ```$obsdate``` accessor for returning a series holding ISO dates. However, for getting this to work, one needs to set the observation dimension as follows:
 ```gretl
-setobs 1 1935 --panel-time
+setobs 1 1935 --panel-time                  # '1' for annual frequency; '1935' initial time observation
 series obsdate = $obsdate
 print obsdate -o --range=1:40
 ```
@@ -39,15 +39,14 @@ This returns (only some values are shown) a series of integers holding ISO dates
  2:19     19530101
  2:20     19540101
 ```
+series obsdate = $obsdate
+print obsdate -o --range=1:40
 
 The following accessors are useful when working with panel data:
 ```gretl
-eval $pd				      # Number of time periods T
-eval $tmax				    # T * N for full sample
-eval $nobs				    # T * N for currently selected sample
-catch eval $obsmicro	# Not defined for panel
-catch eval $obsminor	# Discrete values of time-dimension, 1 to T
-eval $obsmajor			  # Discrete values of cross-sectional dimension, 1 to N
+eval $pd				# Number of time periods T
+eval $tmax				# T * N for full sample
+eval $nobs				# T * N for currently selected sample
 ```
 Returning
 ```
@@ -55,11 +54,11 @@ Returning
 200
 200
 ```
-Additional information are:
+Additional useful information can be retrieved by:
 ```gretl
-catch eval $obsmicro	  # Not defined for panel data
-series time_dim_id = $obsminor	    # Discrete values of time-dimension, 1 to T
-series cross_dim_id =  $obsmajor		# Discrete values of cross-sectional dimension, 1 to N
+catch eval $obsmicro	                      # Not defined for panel data
+series time_dim_id = $obsminor	           # Discrete values of time-dimension, 1 to T
+series cross_dim_id =  $obsmajor	           # Discrete values of cross-sectional dimension, 1 to N
 print time_dim_id cross_dim_id -o --range=1:40
 ```
 Returning:
