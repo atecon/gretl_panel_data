@@ -1,4 +1,4 @@
-# Handling of panel data with gretl
+# Retrieve basic information from panel data set using gretl
 The open-source econometric software [gretl] (http://gretl.sourceforge.net/) nicely supports working with panel data.
 
 Once a panel data set is defined, the user can access different information.
